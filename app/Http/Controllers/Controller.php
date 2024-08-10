@@ -23,5 +23,21 @@ namespace App\Http\Controllers;
  */
 abstract class Controller
 {
-    //
+    protected function sendSuccess($message, $data, $status = 200)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => $message,
+            'data' => $data
+        ], $status);
+    }
+
+    protected function sendError($message, $data = '', $status = 400)
+    {
+        return response()->json([
+            'success' => false,
+            'message' => $message,
+            'data' => $data
+        ], $status);
+    }
 }
